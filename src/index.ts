@@ -1,10 +1,8 @@
 import express from "express";
-import bodyParser from "body-parser";
 
 async function init() {
   try {
     const app = express();
-    app.use(bodyParser.json());
 
     const PORT = 3000;
 
