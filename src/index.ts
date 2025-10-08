@@ -1,11 +1,26 @@
-// Use "type: module" in package.json to use ES modules
 import express from "express";
-const app = express();
+import bodyParser from "body-parser";
 
-// Define your routes
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from Express on Vercel!" });
-});
+async function init() {
+  try {
+    const app = express();
+    app.use(bodyParser.json());
 
-// Export the Express app
-export default app;
+    const PORT = 3000;
+
+    app.get("/", (req, res) => {
+      res.status(200).json({
+        message: "Server is running",
+        data: null,
+      });
+    });
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+init();
